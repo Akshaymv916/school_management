@@ -1,4 +1,4 @@
-**# School Management System
+## School Management System
 
 ## Description
 The School Management System is a web application developed using Django that allows users to manage student details, library history, and fees history efficiently. The system implements Role-Based Access Control (RBAC) to ensure that users can access features based on their roles: Admin, Office Staff, and Librarian.
@@ -29,8 +29,7 @@ The School Management System is a web application developed using Django that al
 ## Installation
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-username/school-management-system.git
-    cd school-management-system
+    git clone https://github.com/your-username/school_management.git
     ```
 
 2. **Create a Virtual Environment:**
@@ -64,7 +63,7 @@ The School Management System is a web application developed using Django that al
 
 ## Usage
 1. **Admin Login:** Use the superuser credentials to log in as an Admin.
-2. **Role Management:** Admin can create Office Staff and Librarian accounts via the Admin panel.
+2. **Role Management:** Admin can create Office Staff students and Librarian accounts via the Admin panel.
 3. **Office Staff & Librarian Access:** Office Staff and Librarian can log in with their credentials to access their specific functionalities.
 
 ## Models
@@ -75,12 +74,11 @@ The School Management System is a web application developed using Django that al
 
 ### Student Model
 - `id` (Primary Key)
+- `user` (ForeignKey to `Student`)
 - `name`
-- `class`
-- `roll_no`
+- `roll_number`
 - `dob`
-- `email`
-- `phone`
+- `class_name`
 
 ### LibraryHistory Model
 - `student` (ForeignKey to `Student`)
@@ -91,26 +89,11 @@ The School Management System is a web application developed using Django that al
 
 ### FeesHistory Model
 - `student` (ForeignKey to `Student`)
-- `fees_month`
+- `fee_type`
 - `amount`
 - `payment_date`
-- `status` (e.g., Paid/Unpaid)
+- `remarks` (e.g., Paid/Unpaid)
 
-## Role-Based Access Control (RBAC)
-RBAC is implemented using Django's `groups` and `permissions`. Each role has predefined permissions:
-- **Admin**: Access to all permissions.
-- **Office Staff**: Permissions limited to student details, library reviews, and fees management.
-- **Librarian**: View-only permissions for student details and library history.
-
-## Directory Structure
-```
-school-management-system/
-    |-- school_management/       # Main Django app
-    |-- templates/               # HTML templates
-    |-- static/                  # CSS, JavaScript, and images
-    |-- requirements.txt         # Python dependencies
-    |-- manage.py                # Django project entry point
-```
 
 ## API Endpoints (Optional)
 If you are exposing RESTful APIs for the system, you can implement the following endpoints:
@@ -132,16 +115,6 @@ If you are exposing RESTful APIs for the system, you can implement the following
 - `PUT /fees/<id>/` - Update a record.
 - `DELETE /fees/<id>/` - Delete a record.
 
-## Testing
-Run the tests using:
-```bash
-python manage.py test
-```
-
-## Future Enhancements
-- Add notifications for overdue library books.
-- Include analytics for fees collection and borrowing patterns.
-- Mobile-friendly responsive design.
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
